@@ -8,6 +8,7 @@ import java.util.function.BiConsumer;
 import lombok.NonNull;
 
 /**
+ * 按照java.util.Map的接口设计，设计多重映射接口
  * 是否存在键值对
  * 获得键值对
  * 添加键值对
