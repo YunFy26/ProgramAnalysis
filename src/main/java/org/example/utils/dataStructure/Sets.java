@@ -1,11 +1,11 @@
-package org.example.utils.factory;
+package org.example.utils.dataStructure;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public final class SetFactory {
-    private SetFactory(){}
+public final class Sets {
+    private Sets(){}
 
     public static <E> Set<E> newHashSet() {
         return new HashSet<>();
