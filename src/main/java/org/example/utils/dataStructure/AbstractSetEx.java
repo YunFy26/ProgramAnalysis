@@ -4,7 +4,10 @@ package org.example.utils.dataStructure;
 import java.util.AbstractSet;
 import java.util.Collection;
 
-
+/**
+ * 扩展AbstractSet，实现SetEx接口
+ * @param <E>
+ */
 public abstract class AbstractSetEx<E> extends AbstractSet<E> implements SetEx<E> {
 
     /**
