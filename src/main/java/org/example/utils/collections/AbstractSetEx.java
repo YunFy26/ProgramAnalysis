@@ -1,4 +1,4 @@
-package org.example.utils.dataStructure;
+package org.example.utils.collections;
 
 
 import java.util.AbstractSet;

@@ -1,4 +1,4 @@
-package org.example.utils.dataStructure;
+package org.example.utils.collections;
 
 /**
  * 基于HashSet的HybridSet，用于存储规模较大的数据

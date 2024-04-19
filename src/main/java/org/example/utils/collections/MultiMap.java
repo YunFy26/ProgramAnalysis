@@ -1,11 +1,11 @@
-package org.example.utils.dataStructure;
+package org.example.utils.collections;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
-import lombok.NonNull;
+import javax.annotation.Nonnull;
 
 /**
  * 按照java.util.Map的接口设计，设计多重映射接口
@@ -61,20 +61,20 @@ public interface MultiMap<K, V> {
      * @param key
      * @param value
      */
-    boolean put(@NonNull K key, @NonNull V value);
+    boolean put(@Nonnull K key, @Nonnull V value);
 
     /**
      * 将多个值映射到键key
      * @param key
      * @param values
      */
-    boolean putAll(@NonNull K key, @NonNull Collection<? extends V> values);
+    boolean putAll(@Nonnull K key, @Nonnull Collection<? extends V> values);
 
     /**
      * 将多重映射中的所有键值对存储到当前映射中
      * @param multiMap
      */
-    boolean putAll(@NonNull MultiMap<? extends K, ? extends V> multiMap);
+    boolean putAll(@Nonnull MultiMap<? extends K, ? extends V> multiMap);
 
     /**
      * 移除键值对
@@ -118,14 +118,14 @@ public interface MultiMap<K, V> {
      * {k, {v1, v2, v3}} => {k, v1}, {k, v2}, {k, v3}
      *
      */
-    default void forEach(@NonNull BiConsumer<K, V> action) {
+    default void forEach(@Nonnull BiConsumer<K, V> action) {
         entrySet().forEach(entry -> action.accept(entry.getKey(), entry.getValue()));
     }
 
     /**
      * {k, {v1, v2, v3}} => {k， {v1, v2, v3}}
      */
-    void forEachSet(@NonNull BiConsumer<K, Collection<V>> action);
+    void forEachSet(@Nonnull BiConsumer<K, Collection<V>> action);
 
     /**
      * 清空映射

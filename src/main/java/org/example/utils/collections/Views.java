@@ -1,6 +1,6 @@
-package org.example.utils.dataStructure;
+package org.example.utils.collections;
 
-import lombok.NonNull;
+import javax.annotation.Nonnull;
 
 import java.util.*;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class Views {
         }
 
         @Override
-        @NonNull
+        @Nonnull
         public Iterator<R> iterator() {
             return new Iterator<>() {
 

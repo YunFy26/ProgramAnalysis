@@ -1,6 +1,6 @@
-package org.example.utils.dataStructure;
+package org.example.utils.collections;
 
-import lombok.NonNull;
+import javax.annotation.Nonnull;
 
 import java.util.*;
 
@@ -60,7 +60,7 @@ public abstract class AbstractMultiMap<K, V> implements MultiMap<K, V>{
         }
 
         @Override
-        @NonNull
+        @Nonnull
         public Iterator<Map.Entry<K, V>> iterator() {
             return entryIterator();
         }
