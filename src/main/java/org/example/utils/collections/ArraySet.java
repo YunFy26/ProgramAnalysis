@@ -3,10 +3,7 @@ package org.example.utils.collections;
 import javax.annotation.Nonnull;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 基于ArrayList的Set，用于存储规模较小的数据
@@ -45,16 +42,16 @@ public class ArraySet<E> extends AbstractSetEx<E> implements Serializable {
     }
 
 
-//    /**
-//     * 以给定的ArrayList作为元素
-//     * @param elements ArrayList
-//     * @param fixedCapacity 是否固定容量
-//     */
-//    public ArraySet(ArrayList<E> elements, boolean fixedCapacity) {
-//        this.elements = elements;
-//        this.initialCapacity = elements.size();
-//        this.fixedCapacity = fixedCapacity;
-//    }
+    /**
+     * 以给定的ArrayList作为元素
+     * @param elements ArrayList
+     * @param fixedCapacity 是否固定容量
+     */
+    public ArraySet(ArrayList<E> elements, boolean fixedCapacity) {
+        this.elements = elements;
+        this.initialCapacity = elements.size();
+        this.fixedCapacity = fixedCapacity;
+    }
 
 //    /**
 //     * 以给定的集合作为元素
@@ -100,15 +97,37 @@ public class ArraySet<E> extends AbstractSetEx<E> implements Serializable {
     }
 
 
-
-
+    /**
+     * 把一个集合c中的所有元素添加到当前集合中<br>
+     * 首先判断c是不是Set实例(如果不是，则c中可能包含重复元素)
+     * @param c 目标集合c
+     * @return 返回ArraySet类型的差集
+     */
     @Override
     public SetEx<E> addAllReturnDiff(Collection<? extends E> c) {
-        return super.addAllReturnDiff(c);
+        ArrayList<E> diff = new ArrayList<>();
+        if (c instanceof Set) {
+            for (E e : c){
+                if (add(e)){
+                    diff.add(e);
+                }
+            }
+        }else {
+            Set<E> diffSet = Sets.newHybridSet();
+            for (E e : c){
+                if (add(e)){
+                    diffSet.add(e);
+                }
+            }
+            diff.addAll(diffSet);
+        }
+        return new ArraySet<>(diff, false);
     }
 
     public SetEx<E> copy() {
-        return super.copy();
+        ArraySet<E> copy = new ArraySet<>(initialCapacity, fixedCapacity);
+        copy.elements.addAll(elements);
+        return copy;
     }
 
 
@@ -116,6 +135,12 @@ public class ArraySet<E> extends AbstractSetEx<E> implements Serializable {
     @Nonnull
     public Object[] toArray() {
         return elements.toArray();
+    }
+
+    @Override
+    @Nonnull
+    public <T> T[] toArray(@Nonnull T[] a) {
+        return elements.toArray(a);
     }
 
     @Override
