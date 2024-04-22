@@ -47,16 +47,29 @@
 
 - Interface
   - `MultiMap`
+    - 类似Map接口，但是提供一对多的映射
 - Abstract Class
   - `AbstractMultiMap`
 - Concrete Class
   - `Maps`<Factory>
+    - 工厂类
 
 >Set
 
 - Interface
   - `SetEx`
+    - 对Set接口的扩展，添加了addAllReturnDiff方法
 - Abstract Class
   - `AbstractSetEx` extends AbstractSet implements SetEx
+    - 对AbstractSet类的扩展
+    - AbstractSet 类继承AbstractCollection，实现了Set接口
+    - AbstractSetEx类继承AbstractSet ，实现了SetEx接口
   - `AbstractHybridSet` extends AbstractSetEx implements Serializable
+    - 抽象类，可根据集合大小自动切换底层数据结构（小：ArraySet，大：HybridHashSet）
 - Concrete Class
+  - `Sets`<Factory>
+    - 工厂类
+  - `HybridHashSet` extends AbstratctHybridSet implements Serializable
+    - 用于存储规模较大的数据
+  - `ArraySet` extends AbstractEx implements Serializable
+    - 用于存储规模较小的数据
