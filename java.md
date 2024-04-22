@@ -6,8 +6,10 @@ package java.util;
 
 - Interface
   - `Collection<E>`  extends Iterable<E> (可迭代)
-    - `Set<E>` extends Collection<E>
+    - `Set<E>` extends Collection<E> 
+      - 实现不可以存储null元素
     - `List<E>` extends Collection<E>
+      - 某些实现可以存储null元素
     - `Queue<E>` extends Collection<E>
   
 - Abstract class
@@ -17,13 +19,35 @@ package java.util;
 - Concrete class
 
   - `ArrayList` 
-
-    <details><summary>当数据规模较小时，使用ArrayList会非常高效</summary>
-        使用数组实现，数组在内存中是连续的，所以ArrayList在遍历时非常高效(O(n))<br>
-        可以通过索引访问元素（O(1)）
-    </details>
-
+    - 数据规模较小时，使用ArrayList会非常高效，因为使用数组实现，数组在内存中是连续的，所以ArrayList在遍历时非常高效(O(n))，可以通过索引访问元素（O(1)）
+    
   - `LinkedList`
+
+Colleciton中的一些基本方法
+
+```java
+int size();
+boolean isEmpty();
+void clear();
+Iterator<E> iterator();
+Object[] toArray();
+<T> T[] toArray(T[] a);
+
+// 单元素操作
+boolean contains(Object o);
+boolean add(E e);
+boolean remove(Object o);
+
+// 多元素操作
+boolean containsAll(Collection<?> c);
+boolean addAll(Collection<? extends E> c);
+boolean removeAll(Collection<?> c);
+boolean retainAll(Collection<?> c);
+
+// 去重
+boolean equals(Object o);
+int hashCode();
+```
 
 
 
@@ -58,5 +82,4 @@ package java.util;
     // 键为 "One" 和 "Two"，对应的值的集合分别为 "[1, 2]" 和 "[3, 4]"
     // 那么这个方法将返回 "{One=[1, 2], Two=[3, 4]}"
     ```
-
 
