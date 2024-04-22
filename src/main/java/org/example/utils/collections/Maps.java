@@ -3,6 +3,7 @@ package org.example.utils.collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public final class Maps {
 
@@ -49,5 +50,15 @@ public final class Maps {
         return newMultiMap(newMap(), Sets::newHybridSet);
     }
 
+    public static <K, V> MultiMap<K, V> newMultiMap(Map<K, Set<V>> map) {
+        return newMultiMap(map, Sets::newHybridSet);
+    }
 
+    public static <K, V> MultiMap<K, V> newMultiMap(Map<K, Set<V>> map, SSupplier<Set<V>> setFactory) {
+        return new MapSetMultiMap<>(map, setFactory);
+    }
+
+//    public static <K, V> MultiMap<K, V> newMultiMap(int initialCapacity) {
+//        return newMultiMap(newMap(initialCapacity), Sets::newHybridSet);
+//    }
 }
