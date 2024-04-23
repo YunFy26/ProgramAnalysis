@@ -1,5 +1,6 @@
 package org.example.utils.collections;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
  * 基于HashSet的HybridSet，用于存储规模较大的数据
  * @param <E>
  */
-public final class HybridHashSet<E> extends AbstractHybridSet<E>{
+public final class HybridHashSet<E> extends AbstractHybridSet<E> implements Serializable {
 
     public HybridHashSet() {
     }
