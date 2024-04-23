@@ -1,5 +1,7 @@
 package org.example.utils.collections;
 
+import org.example.utils.function.SSupplier;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -58,7 +60,11 @@ public final class Maps {
         return new MapSetMultiMap<>(map, setFactory);
     }
 
-//    public static <K, V> MultiMap<K, V> newMultiMap(int initialCapacity) {
-//        return newMultiMap(newMap(initialCapacity), Sets::newHybridSet);
-//    }
+    public static <K, V> MultiMap<K, V> newMultiMap(SSupplier<Set<V>> setFactory) {
+        return newMultiMap(newMap(), setFactory);
+    }
+
+    public static <K, V> MultiMap<K, V> newMultiMap(int initialCapacity) {
+        return newMultiMap(newMap(initialCapacity), Sets::newHybridSet);
+    }
 }
