@@ -11,11 +11,11 @@ package java.util;
     - `List<E>` extends Collection<E>
       - 某些实现可以存储null元素
     - `Queue<E>` extends Collection<E>
-  
+  - `Map`
+    - 
 - Abstract class
   - `AbstractCollection`<E> implements Collection<E>
     - `AbstractSet`<E> extends AbstractCollection<E> implements Set<E>
-  
 - Concrete class
 
   - `ArrayList` 
@@ -29,24 +29,60 @@ Colleciton中的一些基本方法
 int size();
 boolean isEmpty();
 void clear();
-Iterator<E> iterator();
 Object[] toArray();
 <T> T[] toArray(T[] a);
 
-// 单元素操作
-boolean contains(Object o);
-boolean add(E e);
-boolean remove(Object o);
 
-// 多元素操作
+// contains
+boolean contains(Object o);
 boolean containsAll(Collection<?> c);
+// add
+boolean add(E e);
 boolean addAll(Collection<? extends E> c);
+// remove
+boolean remove(Object o);
 boolean removeAll(Collection<?> c);
 boolean retainAll(Collection<?> c);
+// 遍历Collection中的元素
+Iterator<E> iterator();
 
 // 去重
 boolean equals(Object o);
+// 当向集合中添加一个元素时，会先调用equals方法检查集合中是否已存在这个元素
 int hashCode();
+// 首先会使用hashCode值快速判断对象是否相等，只有当两个对象的hashCode值相等时，Set才会调用equals方法比较
+```
+
+Map中的一些基本方法
+
+```java
+int size();
+boolean isEmpty();
+void clear();
+
+boolean containsKey(Object key);
+boolean containsValues(Object value);
+
+// 获取Map中的元素
+V get(Object key); // 获取key对应的value
+default V getOrDefault(Object key, V defaultValue); // 如果没有key，则返回defaultValue 
+Set<K> keySet(); // 返回Map中key的集合
+Collections<V> values(); // 返回Map中所有值的集合
+Set<Entry<K, V>> entrySet(); // 返回Map中所有键值对的集合
+
+// 遍历Map中的元素
+default forEach()
+
+// 向Map中添加元素
+V put(K, V); // 向Map中添加(K, V)的映射
+void putAll(Map<? extends K, ? extends V> m);
+
+// 从Map中移除元素
+V remove(Object key); // 移除Map中key的映射，并返回key映射的value
+default boolean remove(Object key, Object value);
+
+// 更换key映射的value
+···
 ```
 
 
