@@ -52,6 +52,7 @@ public abstract class AbstractMultiMap<K, V> implements MultiMap<K, V>{
     private final class EntrySet extends AbstractSet<Map.Entry<K, V>> {
 
         @Override
+        @SuppressWarnings("unchecked")
         public boolean contains(Object o) {
             if (o instanceof Map.Entry<?, ?> entry){
                 return AbstractMultiMap.this.contains((K) entry.getKey(), (V) entry.getValue());
@@ -96,7 +97,7 @@ public abstract class AbstractMultiMap<K, V> implements MultiMap<K, V>{
 
     /**
      * 判断MultiMap是否为空
-     * @return
+     * @return true为空，false不为空
      */
     @Override
     public boolean isEmpty() {
@@ -105,8 +106,8 @@ public abstract class AbstractMultiMap<K, V> implements MultiMap<K, V>{
 
     /**
      * 判断两个MultiMap是否相等
-     * @param obj
-     * @return
+     * @param obj Object
+     * @return true相等，false不相等
      */
     @Override
     public boolean equals(Object obj) {
@@ -135,7 +136,7 @@ public abstract class AbstractMultiMap<K, V> implements MultiMap<K, V>{
 
     /**
      * 打印MultiMap
-     * @return
+     * @return MultiMap的字符串形式
      */
     @Override
     public String toString() {
