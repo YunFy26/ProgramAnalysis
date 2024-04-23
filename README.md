@@ -71,5 +71,7 @@
     - 工厂类
   - `HybridHashSet` extends AbstratctHybridSet implements Serializable
     - 用于存储规模较大的数据
+    - 使用HashSet实现
   - `ArraySet` extends AbstractEx implements Serializable
     - 用于存储规模较小的数据
+    - 使用ArrayList实现
