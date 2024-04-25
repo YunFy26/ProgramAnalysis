@@ -1,21 +1,23 @@
 package org.example.cfg;
 
-import org.example.utils.dataStructure.MultiMap;
+import org.example.utils.collections.MultiMap;
 
-import org.example.utils.factory.MapFactory;
-import org.example.utils.factory.SetFactory;
+import org.example.utils.collections.Maps;
+import org.example.utils.collections.Sets;
+import org.example.utils.collections.Views;
 import pascal.taie.analysis.graph.cfg.CFG;
 import pascal.taie.analysis.graph.cfg.CFGEdge;
 import pascal.taie.ir.IR;
 import pascal.taie.language.classes.JMethod;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
  * 控制流图
  *
  */
-public abstract class ControlFlowGraph<N> implements CFG<N> {
+public abstract class AbastractCFG<N> implements CFG<N> {
 
     private final IR ir;
 
@@ -29,12 +31,12 @@ public abstract class ControlFlowGraph<N> implements CFG<N> {
 
     private final MultiMap<N, CFGEdge<N>> outEdges;
 
-    ControlFlowGraph(IR ir) {
+    AbastractCFG(IR ir) {
         this.ir = ir;
         int numNodes = ir.getStmts().size() + 2;
-        this.nodes = SetFactory.newHashSet(numNodes);
-        this.inEdges = MapFactory.newHashMap(numNodes);
-        this.outEdges = outEdges;
+        this.nodes = Sets.newSet(numNodes);
+        this.inEdges = Maps.newMultiMap(numNodes);
+        this.outEdges = Maps.newMultiMap(numNodes);
     }
 
     @Override
@@ -86,38 +88,34 @@ public abstract class ControlFlowGraph<N> implements CFG<N> {
     }
 
 
-    @Override
-    public N getNode(int index) {
-        return nodes.;
-    }
 
     @Override
     // 获取前驱节点
-    public Set<N> getPredsOf(N n) {
-        return Set.of();
+    public Set<N> getPredsOf(N node) {
+        return Views.toMappedSet(getInEdgesOf(node), CFGEdge::source);
     }
 
     @Override
     // 获取后继节点
-    public Set<N> getSuccsOf(N n) {
+    public Set<N> getSuccsOf(N node) {
         return Set.of();
     }
 
     @Override
     // 获取入边
-    public Set<CFGEdge<N>> getInEdgesOf(N n) {
-        return Set.of();
+    public Set<CFGEdge<N>> getInEdgesOf(N node) {
+        return inEdges.get(node);
     }
 
     @Override
     // 获取出边
-    public Set<CFGEdge<N>> getOutEdgesOf(N n) {
-        return Set.of();
+    public Set<CFGEdge<N>> getOutEdgesOf(N node) {
+        return outEdges.get(node);
     }
 
     @Override
     // 获取所有节点
     public Set<N> getNodes() {
-        return Set.of();
+        return Collections.unmodifiableSet(nodes);
     }
 }
