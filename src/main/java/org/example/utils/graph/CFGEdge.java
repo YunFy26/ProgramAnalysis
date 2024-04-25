@@ -1,7 +1,8 @@
 package org.example.utils.graph;
 
 import pascal.taie.language.type.ClassType;
-
+import pascal.taie.util.AnalysisException;
+import java.util.Set;
 /**
  * CFG的边
  * @param <N>  CFG的节点
@@ -78,14 +79,16 @@ public class CFGEdge<N> extends AbstractEdge<N>{
     }
 
     public int getCaseValue(){
-
+        throw new AnalysisException(this + "is not a switch-edge," +
+                " please call isSwitchCaseEdge() before calling this method");
     }
 
     public boolean isExceptional(){
-
+        return kind == kind.CAUGHT_EXCEPTION || kind == kind.UNCAUGHT_EXCEPTION;
     }
 
     public Set<ClassType> getExceptions(){
-
+        assert isExceptional() : this + " is not an exceptional edge";
+        return Set.of();
     }
 }
