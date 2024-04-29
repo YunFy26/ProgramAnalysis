@@ -1,5 +1,6 @@
-package org.example.utils.graph;
+package org.example.cfg;
 
+import org.example.utils.graph.AbstractEdge;
 import pascal.taie.language.type.ClassType;
 import pascal.taie.util.AnalysisException;
 import java.util.Set;
@@ -7,7 +8,7 @@ import java.util.Set;
  * CFG的边
  * @param <N>  CFG的节点
  */
-public class CFGEdge<N> extends AbstractEdge<N>{
+public class CFGEdge<N> extends AbstractEdge<N> {
 
     public enum Kind {
 
