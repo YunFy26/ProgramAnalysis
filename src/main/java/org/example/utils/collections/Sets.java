@@ -1,8 +1,6 @@
 package org.example.utils.collections;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public final class Sets {
     private Sets(){}
@@ -21,5 +19,23 @@ public final class Sets {
 
     public static <E> Set<E> newHybridSet() {
         return new HybridHashSet<>();
+    }
+
+    /**
+     * 创建一个有序的Set
+     * @return TreeSet
+     * @param <E> null
+     */
+    public static <E extends Comparable<E>> TreeSet<E> newOrderedSet() {
+        return new TreeSet<>();
+    }
+
+    /**
+     * 创建一个有序的Set
+     * @param comparator 定义对象比较规则
+     * @return TreeSet
+     */
+    public static <E> TreeSet<E> newOrderedSet(Comparator<? super E> comparator) {
+        return new TreeSet<>(comparator);
     }
 }
