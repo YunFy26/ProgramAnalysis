@@ -5,27 +5,29 @@ import org.example.utils.collections.MultiMap;
 import org.example.utils.collections.Maps;
 import org.example.utils.collections.Sets;
 import org.example.utils.collections.Views;
+
 import pascal.taie.analysis.graph.cfg.CFG;
 import pascal.taie.analysis.graph.cfg.CFGEdge;
 import pascal.taie.ir.IR;
 import pascal.taie.language.classes.JMethod;
 
+import javax.swing.text.View;
 import java.util.Collections;
 import java.util.Set;
 
 /**
- * 控制流图
+ * 控制流图 -- 抽象类
  *
  */
 public abstract class AbastractCFG<N> implements CFG<N> {
 
-    private final IR ir;
+    protected final IR ir;
 
-    private N entry;
+    protected N entry;
 
-    private N exit;
+    protected N exit;
 
-    private final Set<N> nodes;
+    protected final Set<N> nodes;
 
     private final MultiMap<N, CFGEdge<N>> inEdges;
 
@@ -87,11 +89,21 @@ public abstract class AbastractCFG<N> implements CFG<N> {
         return node == exit;
     }
 
+    // TODO:添加节点
+    void addNode(N node) {
+    }
 
+    // TODO:添加边
+    void addEdge(CFGEdge<N> edge) {
+    }
+
+    // TODO:获取已存在的边
+    private CFGEdge<N> getExistingEdge(CFGEdge<N> edge) {
+        return null;
+    }
 
     @Override
     // 获取前驱节点
-    // TODO
     public Set<N> getPredsOf(N node) {
         return Views.toMappedSet(getInEdgesOf(node), CFGEdge::source);
     }
@@ -99,7 +111,7 @@ public abstract class AbastractCFG<N> implements CFG<N> {
     @Override
     // 获取后继节点
     public Set<N> getSuccsOf(N node) {
-        return Set.of();
+        return Views.toMappedSet(getOutEdgesOf(node), CFGEdge::target);
     }
 
     @Override
