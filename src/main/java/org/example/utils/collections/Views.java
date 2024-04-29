@@ -83,12 +83,12 @@ public class Views {
      * @param <T> 原集合中的元素类型
      * @param <R> 新集合中的元素类型
      */
-    public static <T, R> Collection<R> toMappedSet(Collection<T> c, Function<T, R> mapper, Predicate<Object> contains){
-        return Collections.unmodifiableCollection(new MappedSetView<>(c, mapper, contains));
+    public static <T, R> Set<R> toMappedSet(Collection<T> c, Function<T, R> mapper, Predicate<Object> contains){
+        return Collections.unmodifiableSet(new MappedSetView<>(c, mapper, contains));
     }
 
-    public static <T, R> Collection<R> toMappedSet(Collection<T> c, Function<T, R> mapper){
-        return Collections.unmodifiableCollection(new MappedSetView<>(c, mapper));
+    public static <T, R> Set<R> toMappedSet(Collection<T> c, Function<T, R> mapper){
+        return Collections.unmodifiableSet(new MappedSetView<>(c, mapper));
     }
 
     private static class MappedSetView<T, R> extends MappedCollectionView<T, R> implements Set<R> {
